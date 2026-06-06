@@ -381,6 +381,21 @@ video.play();
 video.setAttribute("playsinline", "");
 
 video.setAttribute("webkit-playsinline", "");
+AFRAME.registerComponent("video-refresh", {
+tick: function () {
+const mesh = this.el.getObject3D("mesh");
+if (
+mesh &&
+mesh.material &&
+mesh.material.map &&
+video.readyState >= 2
+) {
+mesh.material.map.needsUpdate = true;
+}
+}
+});
+
+videoPlane.setAttribute("video-refresh", "");
 
 
 
