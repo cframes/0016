@@ -165,24 +165,18 @@ id="target"
 mindar-image-target="targetIndex:0"
 >
 
-<a-video
+<a-plane
 id="videoPlane"
-
-src="#video"
-
 position="0 0 0"
-
 width="1"
 height="1.5"
-
 material="
+src:#video;
 shader:flat;
-transparent:false;
-depthTest:true;
-depthWrite:true;
-toneMapped:false;
+side:double;
 "
-></a-video>
+>
+</a-plane>
 
 </a-entity>
 
@@ -334,9 +328,9 @@ video.muted = true;
 
 }
 
-video.currentTime = 0;
-
-await video.play();
+if(video.paused){
+  await video.play();
+}
 
 }catch(e){}
 
